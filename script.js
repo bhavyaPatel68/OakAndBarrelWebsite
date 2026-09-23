@@ -33,6 +33,77 @@ document.addEventListener('DOMContentLoaded', function () {
     yearEl.textContent = new Date().getFullYear();
   }
 
+  /* ---------- Header shadow on scroll ---------- */
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var updateHeader = function () {
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    };
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  }
+
+  /* ---------- Scroll-triggered fade-ins ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    if ('IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      revealEls.forEach(function (el) { revealObserver.observe(el); });
+    } else {
+      // No IntersectionObserver support — just show everything.
+      revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  }
+
+  /* ---------- Smooth FAQ accordion ---------- */
+  document.querySelectorAll('.faq-item').forEach(function (details) {
+    var summary = details.querySelector('summary');
+    var answer = details.querySelector('.faq-answer');
+    if (!summary || !answer) return;
+
+    // Fall back to native <details> behavior if the Web Animations API
+    // isn't available — still fully functional, just not animated.
+    if (!answer.animate) return;
+
+    var animation = null;
+
+    summary.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      if (animation) animation.cancel();
+
+      if (!details.open) {
+        // Opening
+        details.open = true;
+        var endHeight = answer.scrollHeight;
+        animation = answer.animate(
+          [{ height: '0px', opacity: 0 }, { height: endHeight + 'px', opacity: 1 }],
+          { duration: 220, easing: 'ease' }
+        );
+        animation.onfinish = function () { answer.style.height = ''; };
+      } else {
+        // Closing
+        var startHeight = answer.scrollHeight;
+        animation = answer.animate(
+          [{ height: startHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }],
+          { duration: 200, easing: 'ease' }
+        );
+        animation.onfinish = function () {
+          details.open = false;
+          answer.style.height = '';
+        };
+      }
+    });
+  });
+
   /* ================================================================
      CONTACT FORM (Formspree)
      ----------------------------------------------------------------
