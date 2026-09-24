@@ -93,9 +93,11 @@ section[id] { scroll-margin-top: 84px; }
   transform: translateY(18px);
   transition: opacity 0.65s ease, transform 0.65s ease;
 }
+/* "none" (instead of translateY(0)) lets the browser drop the extra
+   graphics layer once the fade-in finishes, which keeps phone scrolling smooth. */
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 .reveal-group .reveal:nth-child(2) { transition-delay: 0.08s; }
 .reveal-group .reveal:nth-child(3) { transition-delay: 0.16s; }
@@ -806,4 +808,24 @@ section[id] { scroll-margin-top: 84px; }
 @media (max-width: 720px) {
   .faq-cta-inner { flex-direction: column; align-items: flex-start; }
   .faq-answer, .faq-item summary { padding-right: 2rem; }
+}
+
+/* ===================================================================
+   Phone scroll smoothness
+   -------------------------------------------------------------------
+   On desktop the header shrinks a little once you scroll. Shrinking
+   changes the header's height, which shoves the whole page around while
+   your finger is still moving and makes scrolling feel choppy on phones.
+   On small screens the header now stays one size (only the soft shadow
+   appears), so nothing shifts mid-scroll.
+   =================================================================== */
+@media (max-width: 720px) {
+  .header-inner,
+  .wordmark { transition: none; }
+
+  .site-header.is-scrolled .header-inner {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+  .site-header.is-scrolled .wordmark { font-size: 1.5rem; }
 }

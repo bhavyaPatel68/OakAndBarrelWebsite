@@ -33,14 +33,32 @@ document.addEventListener('DOMContentLoaded', function () {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  /* ---------- Header shadow on scroll ---------- */
+  /* ---------- Header shadow on scroll ----------
+     Runs at most once per animation frame, and only touches the page
+     when the header actually needs to change. This keeps scrolling
+     smooth on phones, where scroll events fire very rapidly. */
   var header = document.querySelector('.site-header');
   if (header) {
+    var headerScrolled = false;
+    var headerTicking = false;
+
     var updateHeader = function () {
-      header.classList.toggle('is-scrolled', window.scrollY > 12);
+      var shouldBeScrolled = window.scrollY > 12;
+      if (shouldBeScrolled !== headerScrolled) {
+        headerScrolled = shouldBeScrolled;
+        header.classList.toggle('is-scrolled', shouldBeScrolled);
+      }
+      headerTicking = false;
     };
+
     updateHeader();
-    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    window.addEventListener('scroll', function () {
+      if (!headerTicking) {
+        headerTicking = true;
+        window.requestAnimationFrame(updateHeader);
+      }
+    }, { passive: true });
   }
 
   /* ---------- Scroll-triggered fade-ins ---------- */
@@ -103,6 +121,32 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  /* ---------- Map: tap to interact (location page) ----------
+     An embedded map grabs touch and mouse-wheel input, which "traps"
+     the page and makes it feel like scrolling has stopped working.
+     The map stays locked until the visitor taps it, and unlocks again
+     when they tap anywhere else. */
+  var mapFrame = document.getElementById('mapFrame');
+  var mapActivate = document.getElementById('mapActivate');
+
+  if (mapFrame && mapActivate) {
+    mapActivate.addEventListener('click', function () {
+      mapFrame.classList.add('is-active');
+    });
+
+    document.addEventListener('click', function (event) {
+      if (mapFrame.classList.contains('is-active') && !mapFrame.contains(event.target)) {
+        mapFrame.classList.remove('is-active');
+      }
+    });
+
+    document.addEventListener('touchstart', function (event) {
+      if (mapFrame.classList.contains('is-active') && !mapFrame.contains(event.target)) {
+        mapFrame.classList.remove('is-active');
+      }
+    }, { passive: true });
+  }
 
   /* ================================================================
      CONTACT FORM (Formspree)
