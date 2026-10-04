@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Application — Oak &amp; Barrel Liquors, Evansville IN</title>
+<meta name="description" content="Apply to work at Oak & Barrel Liquors in Evansville, Indiana. Fill out our employment application online.">
+
+<meta property="og:title" content="Application — Oak &amp; Barrel Liquors">
+<meta property="og:description" content="Interested in joining the Oak &amp; Barrel team? Apply online.">
+<meta property="og:type" content="business.business">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Favicon (generated from oakAndBarrelLogo.jpg) -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+
+<link rel="stylesheet" href="style.css">
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+
+<!-- Styles used only on this page. Everything else comes from style.css. -->
+<style>
+  .apply { background: var(--color-cream); }
+  .apply-inner { max-width: 860px; padding-top: var(--space-lg); }
+
+  .apply-note {
+    font-size: 0.9rem;
+    color: #6b5f4f;
+    margin-bottom: var(--space-md);
+  }
+
+  .app-section {
+    background: #fff;
+    border: 1px solid var(--color-tan);
+    border-top: 4px solid var(--color-brass);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin: 0 0 var(--space-md);
+  }
+  .app-section > h2 {
+    font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+    margin-bottom: 0.9em;
+  }
+  .app-section > .section-help {
+    color: #6b5f4f;
+    font-size: 0.9rem;
+    margin: -0.5em 0 1.1rem;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 1.25rem;
+  }
+  .field-grid.cols-3 { grid-template-columns: 2fr 1fr 1fr; }
+  .field-grid.cols-even3 { grid-template-columns: repeat(3, 1fr); }
+  .field-full { grid-column: 1 / -1; }
+
+  .app-form label,
+  .app-form legend {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.3em;
+    padding: 0;
+  }
+  .app-form .req { color: var(--color-brass); margin-left: 0.15em; }
+
+  .app-form input[type="text"],
+  .app-form input[type="tel"],
+  .app-form input[type="email"],
+  .app-form input[type="date"],
+  .app-form select,
+  .app-form textarea {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 0.7em 0.8em;
+    border: 1px solid var(--color-tan);
+    border-radius: var(--radius-sm);
+    background: var(--color-cream);
+    color: var(--color-charcoal);
+  }
+  .app-form textarea { resize: vertical; }
+  .app-form input:focus,
+  .app-form select:focus,
+  .app-form textarea:focus {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 1px;
+  }
+
+  .app-form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .choice-row { display: flex; gap: 1.5rem; flex-wrap: wrap; padding-top: 0.2rem; }
+  .app-form label.choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 0;
+    cursor: pointer;
+  }
+  .app-form input[type="radio"],
+  .app-form input[type="checkbox"] {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0;
+    accent-color: var(--color-brass);
+  }
+
+  .entry-block { padding-top: 1.1rem; margin-top: 1.1rem; border-top: 1px solid var(--color-tan); }
+  .entry-block:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+  .entry-block h3 { margin-bottom: 0.7em; }
+
+  .certify-text { color: #4a4238; font-size: 0.92rem; margin-bottom: 1rem; max-width: none; }
+  .app-form label.certify {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-bottom: 1.1rem;
+  }
+  .app-form label.certify input { margin-top: 0.2rem; flex-shrink: 0; }
+
+  .apply-submit { margin-bottom: var(--space-md); }
+  .apply-submit .btn { margin-top: 0.4rem; }
+  .apply-privacy { font-size: 0.85rem; color: #6b5f4f; margin-bottom: 0.8rem; }
+  .apply-eeo { font-size: 0.85rem; color: #6b5f4f; margin: 1rem 0 0; }
+
+  @media (max-width: 720px) {
+    .field-grid,
+    .field-grid.cols-3,
+    .field-grid.cols-even3 { grid-template-columns: 1fr; }
+    .app-section { padding: 1.4rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="index.html" class="wordmark">Oak <span class="amp">&amp;</span> Barrel</a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="index.html#selection">Our Selection</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#opening">Now Open</a>
+      <a href="location.html">Location</a>
+      <a href="faq.html">FAQ</a>
+      <a href="careers.html" class="is-current" aria-current="page">Application</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="page-head">
+    <div class="section-inner">
+      <p class="section-kicker">Join our team</p>
+      <h1>Employment Application</h1>
+      <p class="page-head-lede">
+        Interested in working at Oak &amp; Barrel? Fill out the application below. We read every one, and we'll reach out if there's a good fit.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ APPLICATION ============ -->
+  <section class="apply" id="apply">
+    <div class="section-inner apply-inner">
+
+      <p class="apply-note">Fields marked with * are required.</p>
+
+      <!-- Submits to Formspree. This is the same form ID as the contact form on index.html,
+           so applications arrive at the same inbox. They are labeled by the subject line below.
+           TODO (optional): to keep applications separate from contact messages, create a second
+           form in your Formspree dashboard and replace mjykgkjn below with the new form ID. -->
+      <form class="app-form"
+            id="applyForm"
+            aria-label="Employment application"
+            action="https://formspree.io/f/mjykgkjn"
+            method="POST">
+
+        <!-- Subject line of the notification email sent to the store -->
+        <input type="hidden" name="_subject" value="New job application from the Oak &amp; Barrel website">
+
+        <!-- ---------- Applicant information ---------- -->
+        <div class="app-section reveal" role="group" aria-labelledby="h-applicant">
+          <h2 id="h-applicant">Applicant information</h2>
+          <div class="field-grid">
+            <div class="field-full">
+              <label for="fullName">Full name<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="fullName" name="Full name" autocomplete="name" required>
+            </div>
+            <div class="field-full">
+              <label for="address">Street address<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="address" name="Street address" autocomplete="street-address" required>
+            </div>
+          </div>
+          <div class="field-grid cols-3" style="margin-top: 1rem;">
+            <div>
+              <label for="city">City<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="city" name="City" autocomplete="address-level2" required>
+            </div>
+            <div>
+              <label for="state">State<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="state" name="State" autocomplete="address-level1" maxlength="2" required>
+            </div>
+            <div>
+              <label for="zip">ZIP<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="zip" name="ZIP" autocomplete="postal-code" inputmode="numeric" required>
+            </div>
+          </div>
+          <div class="field-grid" style="margin-top: 1rem;">
+            <div>
+              <label for="phone">Phone<span class="req" aria-hidden="true">*</span></label>
+              <input type="tel" id="phone" name="Phone" autocomplete="tel" required>
+            </div>
+            <div>
+              <label for="email">Email<span class="req" aria-hidden="true">*</span></label>
+              <!-- Named "email" on purpose: Formspree uses it as the reply-to address, so you can reply to the applicant directly. -->
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- Position & availability ---------- -->
+        <div class="app-section reveal" role="group" aria-labelledby="h-position">
+          <h2 id="h-position">Position and availability</h2>
+          <div class="field-grid">
+            <div>
+              <label for="positionApplied">Position applied for<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="positionApplied" name="Position applied for" required>
+            </div>
+            <div>
+              <label for="dateAvailable">Date available<span class="req" aria-hidden="true">*</span></label>
+              <input type="date" id="dateAvailable" name="Date available" required>
+            </div>
+            <div>
+              <label for="desiredHours">Desired hours</label>
+              <input type="text" id="desiredHours" name="Desired hours" placeholder="e.g. Part time, 20 hours a week">
+            </div>
+            <div>
+              <label for="desiredPay">Desired pay</label>
+              <input type="text" id="desiredPay" name="Desired pay" placeholder="e.g. $15 an hour">
+            </div>
+
+            <fieldset>
+              <legend>Are you available evenings?<span class="req" aria-hidden="true">*</span></legend>
+              <div class="choice-row">
+                <label class="choice"><input type="radio" name="Available evenings" value="Yes" required> Yes</label>
+                <label class="choice"><input type="radio" name="Available evenings" value="No"> No</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Are you available weekends?<span class="req" aria-hidden="true">*</span></legend>
+              <div class="choice-row">
+                <label class="choice"><input type="radio" name="Available weekends" value="Yes" required> Yes</label>
+                <label class="choice"><input type="radio" name="Available weekends" value="No"> No</label>
+              </div>
+            </fieldset>
+
+            <!-- TODO: confirm the minimum age to work in a package liquor store with the Indiana
+                 Alcohol & Tobacco Commission. If it isn't 18, change the number in the question below. -->
+            <fieldset class="field-full">
+              <legend>Are you at least 18 years old?<span class="req" aria-hidden="true">*</span></legend>
+              <div class="choice-row">
+                <label class="choice"><input type="radio" name="At least 18" value="Yes" required> Yes</label>
+                <label class="choice"><input type="radio" name="At least 18" value="No"> No</label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <!-- ---------- Work experience ---------- -->
+        <div class="app-section reveal" role="group" aria-labelledby="h-work">
+          <h2 id="h-work">Work experience</h2>
+          <p class="section-help">No work history yet? That's fine. Leave this section blank.</p>
+
+          <div class="entry-block">
+            <h3>Most recent job</h3>
+            <div class="field-grid">
+              <div>
+                <label for="job1Employer">Employer or company</label>
+                <input type="text" id="job1Employer" name="Job 1 employer">
+              </div>
+              <div>
+                <label for="job1Position">Position</label>
+                <input type="text" id="job1Position" name="Job 1 position">
+              </div>
+              <div>
+                <label for="job1Dates">Dates</label>
+                <input type="text" id="job1Dates" name="Job 1 dates" placeholder="e.g. June 2022 to August 2024">
+              </div>
+              <div>
+                <label for="job1Reason">Reason for leaving</label>
+                <input type="text" id="job1Reason" name="Job 1 reason for leaving">
+              </div>
+            </div>
+          </div>
+
+          <div class="entry-block">
+            <h3>Previous job</h3>
+            <div class="field-grid">
+              <div>
+                <label for="job2Employer">Employer or company</label>
+                <input type="text" id="job2Employer" name="Job 2 employer">
+              </div>
+              <div>
+                <label for="job2Position">Position</label>
+                <input type="text" id="job2Position" name="Job 2 position">
+              </div>
+              <div>
+                <label for="job2Dates">Dates</label>
+                <input type="text" id="job2Dates" name="Job 2 dates" placeholder="e.g. May 2020 to May 2022">
+              </div>
+              <div>
+                <label for="job2Reason">Reason for leaving</label>
+                <input type="text" id="job2Reason" name="Job 2 reason for leaving">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- Education & skills ---------- -->
+        <div class="app-section reveal" role="group" aria-labelledby="h-edu">
+          <h2 id="h-edu">Education and skills</h2>
+          <div class="field-grid">
+            <div class="field-full">
+              <label for="education">Highest education completed</label>
+              <select id="education" name="Highest education completed">
+                <option value="">Select one</option>
+                <option>Some high school</option>
+                <option>High school diploma or GED</option>
+                <option>Trade or technical certificate</option>
+                <option>Some college</option>
+                <option>Associate degree</option>
+                <option>Bachelor's degree or higher</option>
+              </select>
+            </div>
+            <div>
+              <label for="retailExp">Retail or cash register experience</label>
+              <textarea id="retailExp" name="Retail / cash register experience" rows="3"></textarea>
+            </div>
+            <div>
+              <label for="serviceExp">Customer service experience</label>
+              <textarea id="serviceExp" name="Customer service experience" rows="3"></textarea>
+            </div>
+            <div class="field-full">
+              <label for="otherSkills">Other relevant skills</label>
+              <textarea id="otherSkills" name="Other relevant skills" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- References ---------- -->
+        <div class="app-section reveal" role="group" aria-labelledby="h-refs">
+          <h2 id="h-refs">References</h2>
+
+          <div class="entry-block">
+            <h3>First reference</h3>
+            <div class="field-grid cols-even3">
+              <div>
+                <label for="ref1Name">Name</label>
+                <input type="text" id="ref1Name" name="Reference 1 name">
+              </div>
+              <div>
+                <label for="ref1Rel">Relationship</label>
+                <input type="text" id="ref1Rel" name="Reference 1 relationship">
+              </div>
+              <div>
+                <label for="ref1Contact">Phone or email</label>
+                <input type="text" id="ref1Contact" name="Reference 1 contact">
+              </div>
+            </div>
+          </div>
+
+          <div class="entry-block">
+            <h3>Second reference</h3>
+            <div class="field-grid cols-even3">
+              <div>
+                <label for="ref2Name">Name</label>
+                <input type="text" id="ref2Name" name="Reference 2 name">
+              </div>
+              <div>
+                <label for="ref2Rel">Relationship</label>
+                <input type="text" id="ref2Rel" name="Reference 2 relationship">
+              </div>
+              <div>
+                <label for="ref2Contact">Phone or email</label>
+                <input type="text" id="ref2Contact" name="Reference 2 contact">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- Acknowledgment ---------- -->
+        <div class="app-section reveal" role="group" aria-labelledby="h-ack">
+          <h2 id="h-ack">Applicant acknowledgment</h2>
+          <p class="certify-text">
+            I certify that the information provided on this application is true and complete to the best of my knowledge.
+            I understand that false or incomplete information may result in disqualification from consideration or
+            termination if hired. Employment is subject to applicable federal, state, and local laws and store
+            requirements. I understand that this application does not create a contract of employment.
+          </p>
+
+          <label class="certify" for="certify">
+            <input type="checkbox" id="certify" name="Certification" value="Agreed" required>
+            <span>I have read and agree to the statement above.<span class="req" aria-hidden="true">*</span></span>
+          </label>
+
+          <div class="field-grid">
+            <div>
+              <label for="signature">Signature (type your full name)<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="signature" name="Signature" autocomplete="name" required>
+            </div>
+            <div>
+              <label for="signDate">Date<span class="req" aria-hidden="true">*</span></label>
+              <input type="date" id="signDate" name="Signature date" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Honeypot: hidden from humans, catches spam bots. Do not remove. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-honeypot">
+
+        <!-- ---------- Submit ---------- -->
+        <div class="apply-submit reveal">
+          <p class="apply-privacy">
+            What you submit is used only to consider you for employment. It's sent to us through Formspree, a
+            third-party form service. Please don't include Social Security numbers or other ID numbers.
+          </p>
+          <button type="submit" class="btn btn-primary" id="applySubmit">Send application</button>
+
+          <!-- Success / error messages are written here by the script at the bottom of this page -->
+          <p class="form-status" id="applyStatus" role="status" aria-live="polite"></p>
+
+          <p class="apply-eeo">Oak &amp; Barrel is an equal opportunity employer. Hiring decisions are made in accordance with applicable law.</p>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p class="wordmark footer-wordmark">Oak <span class="amp">&amp;</span> Barrel</p>
+      <address>
+        1523 Florida Court, Suite 102<br>
+        Evansville, IN
+      </address>
+      <a class="tel-link" href="tel:+18127733883">(812) 773-3883</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Hours</h3>
+      <p>Mon–Thu: 9:00 AM – 11:00 PM</p>
+      <p>Fri–Sat: 9:00 AM – 12:00 AM</p>
+      <p>Sun: 12:00 PM – 8:00 PM</p>
+      <p>Open every holiday</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <a href="index.html#selection">Our Selection</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#opening">Now Open</a>
+      <a href="index.html#policies">Policies</a>
+      <a href="faq.html">FAQ</a>
+      <a href="careers.html">Application</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Follow</h3>
+      <a href="https://www.facebook.com/profile.php?id=61593742514404" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> Oak &amp; Barrel Liquors. Must be 21+ to purchase alcohol. Please drink responsibly.</p>
+    <p class="footer-note">This website is for information purposes only. Oak &amp; Barrel does not sell or ship alcohol online.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+<!-- Application form handler (Formspree). Same pattern as the contact form in script.js:
+     submits in the background, shows a message under the button, and falls back to a normal
+     Formspree submission if JavaScript is off. Nothing here needs editing. -->
+<script>
+(function () {
+  var form = document.getElementById('applyForm');
+  var status = document.getElementById('applyStatus');
+  var submitBtn = document.getElementById('applySubmit');
+  var signDate = document.getElementById('signDate');
+  if (!form || !status) return;
+
+  function todayString() {
+    var d = new Date();
+    var m = ('0' + (d.getMonth() + 1)).slice(-2);
+    var day = ('0' + d.getDate()).slice(-2);
+    return d.getFullYear() + '-' + m + '-' + day;
+  }
+
+  function fillDate() {
+    if (signDate && !signDate.value) signDate.value = todayString();
+  }
+  fillDate();
+
+  function showStatus(message, kind) {
+    status.textContent = message;
+    status.classList.remove('is-success', 'is-error');
+    status.classList.add('is-visible', kind === 'error' ? 'is-error' : 'is-success');
+  }
+
+  function setSending(isSending) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isSending;
+    submitBtn.textContent = isSending ? 'Sending\u2026' : 'Send application';
+  }
+
+  form.addEventListener('submit', function (event) {
+
+    // If the form ID hasn't been filled in, don't pretend it worked.
+    if (form.action.indexOf('YOUR_FORM_ID') !== -1) {
+      event.preventDefault();
+      showStatus('This form isn\u2019t connected yet. Please call or stop by the store to apply.', 'error');
+      console.warn('Formspree form ID missing: replace YOUR_FORM_ID in the form action in careers.html.');
+      return;
+    }
+
+    event.preventDefault();
+
+    var data = new FormData(form);
+
+    setSending(true);
+    showStatus('Sending\u2026', 'success');
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+      .then(function (response) {
+        if (response.ok) {
+          form.reset();
+          fillDate();
+          showStatus('Thanks \u2014 your application has been sent. We\u2019ll be in touch if there\u2019s a good fit.', 'success');
+        } else {
+          return response.json().then(function (body) {
+            var msg = 'Something went wrong. Please try again later.';
+            if (body && body.errors && body.errors.length) {
+              msg = body.errors.map(function (e) { return e.message; }).join(', ');
+            }
+            showStatus(msg, 'error');
+          });
+        }
+      })
+      .catch(function () {
+        showStatus('Couldn\u2019t send your application \u2014 please check your connection and try again.', 'error');
+      })
+      .then(function () {
+        setSending(false);
+      });
+  });
+})();
+</script>
+</body>
+</html>

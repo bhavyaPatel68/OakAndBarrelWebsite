@@ -33,32 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  /* ---------- Header shadow on scroll ----------
-     Runs at most once per animation frame, and only touches the page
-     when the header actually needs to change. This keeps scrolling
-     smooth on phones, where scroll events fire very rapidly. */
+  /* ---------- Header shadow on scroll ---------- */
   var header = document.querySelector('.site-header');
   if (header) {
-    var headerScrolled = false;
-    var headerTicking = false;
-
     var updateHeader = function () {
-      var shouldBeScrolled = window.scrollY > 12;
-      if (shouldBeScrolled !== headerScrolled) {
-        headerScrolled = shouldBeScrolled;
-        header.classList.toggle('is-scrolled', shouldBeScrolled);
-      }
-      headerTicking = false;
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
     };
-
     updateHeader();
-
-    window.addEventListener('scroll', function () {
-      if (!headerTicking) {
-        headerTicking = true;
-        window.requestAnimationFrame(updateHeader);
-      }
-    }, { passive: true });
+    window.addEventListener('scroll', updateHeader, { passive: true });
   }
 
   /* ---------- Scroll-triggered fade-ins ---------- */
@@ -78,6 +60,63 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       // No IntersectionObserver support — just show everything.
       revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  }
+
+  /* ---------- Welcome section photo carousel ----------
+     Auto-advancing crossfade through the store photos. Pauses on
+     hover/focus (so it doesn't distract someone reading nearby text),
+     pauses when the tab isn't visible, and never auto-advances at all
+     if the visitor has reduced motion turned on — it just shows the
+     first photo. */
+  var carousel = document.getElementById('photoCarousel');
+  if (carousel) {
+    var slides = carousel.querySelectorAll('img');
+    var dots = carousel.querySelectorAll('.photo-carousel-dots span');
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (slides.length > 1 && !reduceMotion) {
+      var current = 0;
+      var carouselTimer = null;
+
+      var showSlide = function (index) {
+        slides[current].classList.remove('is-active');
+        if (dots[current]) dots[current].classList.remove('is-active');
+        current = index;
+        slides[current].classList.add('is-active');
+        if (dots[current]) dots[current].classList.add('is-active');
+      };
+
+      var nextSlide = function () {
+        showSlide((current + 1) % slides.length);
+      };
+
+      var startCarousel = function () {
+        stopCarousel();
+        carouselTimer = window.setInterval(nextSlide, 4500);
+      };
+
+      var stopCarousel = function () {
+        if (carouselTimer) {
+          window.clearInterval(carouselTimer);
+          carouselTimer = null;
+        }
+      };
+
+      carousel.addEventListener('mouseenter', stopCarousel);
+      carousel.addEventListener('mouseleave', startCarousel);
+      carousel.addEventListener('focusin', stopCarousel);
+      carousel.addEventListener('focusout', startCarousel);
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          stopCarousel();
+        } else {
+          startCarousel();
+        }
+      });
+
+      startCarousel();
     }
   }
 
@@ -121,32 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
-
-  /* ---------- Map: tap to interact (location page) ----------
-     An embedded map grabs touch and mouse-wheel input, which "traps"
-     the page and makes it feel like scrolling has stopped working.
-     The map stays locked until the visitor taps it, and unlocks again
-     when they tap anywhere else. */
-  var mapFrame = document.getElementById('mapFrame');
-  var mapActivate = document.getElementById('mapActivate');
-
-  if (mapFrame && mapActivate) {
-    mapActivate.addEventListener('click', function () {
-      mapFrame.classList.add('is-active');
-    });
-
-    document.addEventListener('click', function (event) {
-      if (mapFrame.classList.contains('is-active') && !mapFrame.contains(event.target)) {
-        mapFrame.classList.remove('is-active');
-      }
-    });
-
-    document.addEventListener('touchstart', function (event) {
-      if (mapFrame.classList.contains('is-active') && !mapFrame.contains(event.target)) {
-        mapFrame.classList.remove('is-active');
-      }
-    }, { passive: true });
-  }
 
   /* ================================================================
      CONTACT FORM (Formspree)
