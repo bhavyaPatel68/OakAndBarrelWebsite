@@ -206,6 +206,8 @@
         <!-- ---------- Applicant information ---------- -->
         <div class="app-section reveal" role="group" aria-labelledby="h-applicant">
           <h2 id="h-applicant">Applicant information</h2>
+          <!-- Section divider: not shown on the page, but labels this section in the notification email. -->
+          <input type="hidden" name="===== 1. APPLICANT INFORMATION =====" value="-----">
           <div class="field-grid">
             <div class="field-full">
               <label for="fullName">Full name<span class="req" aria-hidden="true">*</span></label>
@@ -246,6 +248,8 @@
         <!-- ---------- Position & availability ---------- -->
         <div class="app-section reveal" role="group" aria-labelledby="h-position">
           <h2 id="h-position">Position and availability</h2>
+          <!-- Section divider: not shown on the page, but labels this section in the notification email. -->
+          <input type="hidden" name="===== 2. POSITION AND AVAILABILITY =====" value="-----">
           <div class="field-grid">
             <div>
               <label for="positionApplied">Position applied for<span class="req" aria-hidden="true">*</span></label>
@@ -255,13 +259,9 @@
               <label for="dateAvailable">Date available<span class="req" aria-hidden="true">*</span></label>
               <input type="date" id="dateAvailable" name="Date available" required>
             </div>
-            <div>
+            <div class="field-full">
               <label for="desiredHours">Desired hours</label>
               <input type="text" id="desiredHours" name="Desired hours" placeholder="e.g. Part time, 20 hours a week">
-            </div>
-            <div>
-              <label for="desiredPay">Desired pay</label>
-              <input type="text" id="desiredPay" name="Desired pay" placeholder="e.g. $15 an hour">
             </div>
 
             <fieldset>
@@ -295,6 +295,8 @@
         <!-- ---------- Work experience ---------- -->
         <div class="app-section reveal" role="group" aria-labelledby="h-work">
           <h2 id="h-work">Work experience</h2>
+          <!-- Section divider: not shown on the page, but labels this section in the notification email. -->
+          <input type="hidden" name="===== 3. WORK EXPERIENCE =====" value="-----">
           <p class="section-help">No work history yet? That's fine. Leave this section blank.</p>
 
           <div class="entry-block">
@@ -345,6 +347,8 @@
         <!-- ---------- Education & skills ---------- -->
         <div class="app-section reveal" role="group" aria-labelledby="h-edu">
           <h2 id="h-edu">Education and skills</h2>
+          <!-- Section divider: not shown on the page, but labels this section in the notification email. -->
+          <input type="hidden" name="===== 4. EDUCATION AND SKILLS =====" value="-----">
           <div class="field-grid">
             <div class="field-full">
               <label for="education">Highest education completed</label>
@@ -376,6 +380,8 @@
         <!-- ---------- References ---------- -->
         <div class="app-section reveal" role="group" aria-labelledby="h-refs">
           <h2 id="h-refs">References</h2>
+          <!-- Section divider: not shown on the page, but labels this section in the notification email. -->
+          <input type="hidden" name="===== 5. REFERENCES =====" value="-----">
 
           <div class="entry-block">
             <h3>First reference</h3>
@@ -417,6 +423,8 @@
         <!-- ---------- Acknowledgment ---------- -->
         <div class="app-section reveal" role="group" aria-labelledby="h-ack">
           <h2 id="h-ack">Applicant acknowledgment</h2>
+          <!-- Section divider: not shown on the page, but labels this section in the notification email. -->
+          <input type="hidden" name="===== 6. APPLICANT ACKNOWLEDGMENT =====" value="-----">
           <p class="certify-text">
             I certify that the information provided on this application is true and complete to the best of my knowledge.
             I understand that false or incomplete information may result in disqualification from consideration or
